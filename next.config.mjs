@@ -6,12 +6,17 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
         port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.pokemondb.net',
+        port: '',
       }
     ],
   },
   env: {
     POKEDEX_URL: process.env.POKEDEX_URL,
-    SPRITES_URL: process.env.SPRITES_URL
+    POKEMONDB_URL: process.env.POKEMONDB_URL,
   }
 };
 

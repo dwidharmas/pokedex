@@ -12,9 +12,6 @@ export default function MainHeader () {
           Pokedex
           </h1>
         </Link>
-        <nav>
-          Search Pokemon
-        </nav>
       </div>
     </header>
 )
