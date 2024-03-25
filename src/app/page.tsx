@@ -2,15 +2,15 @@
 import PokeGrid from "@/components/pokemons/poke-grids";
 import { getPokemon, getPokemons } from "@/libs/hooks/pokemons";
 import { sortById } from "@/libs/utils/sort";
+import { PokemonTypes } from "@/interface/pokemon";
 
 
 async function Pokemons() {
 
   const allPokemon = await getPokemons()
-  // const entries = allPokemon.data.pokemon_entries.slice(0, 2);
   const entries = allPokemon.data.pokemon_entries;
   const modifiedPokemon = await Promise.all(
-    entries.map(async ent => {
+    entries.map(async (ent:any) => {
       const url = ent.pokemon_species.url
       const temp = url.split('/')
       const id = temp[temp.length - 2]
@@ -21,7 +21,7 @@ async function Pokemons() {
         id: poke.data.id,
         name: poke.data.name,
         sprites: poke.data.sprites.front_shiny,
-        types: poke.data.types.map(arr => arr.type.name)
+        types: poke.data.types.map((arr: PokemonTypes) => arr.type.name)
       }
   
     })

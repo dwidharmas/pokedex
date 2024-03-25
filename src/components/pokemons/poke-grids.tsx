@@ -1,37 +1,29 @@
-'use client'
-import { useEffect, useState } from "react";
 import PokeCard from "./poke-card";
 import { getPokemon } from "@/libs/hooks/pokemons";
-import { Pokemon } from "@/interface/pokemon";
+import { PokemonTypes } from "@/interface/pokemon";
+
+async function SpecialPokemon() {
+  const specialPokemon = await getPokemon('necrozma-ultra')
+  const modifiedPokemon = {
+    id: specialPokemon.data.id,
+    name: specialPokemon.data.name,
+    sprites: specialPokemon.data.sprites.front_shiny,
+    types: specialPokemon.data.types.map((arr:PokemonTypes) => arr.type.name)
+  }
+  
+  return <PokeCard className={'bg-slate-100 flex flex-col items-center border border-slate-200 h-full col-start-5'} special={true} {...modifiedPokemon} />
+}
 
 export default function PokeGrid({pokemons} : any) {
-  const [specialPokemon, setSpecialPokemon] = useState<any>()
-  useEffect(() => {
-    console.log('pokemon ', pokemons)
-    getPokemon('necrozma-ultra')
-      .then(res => {
-        setSpecialPokemon({
-          id: res.data.id,
-          name: res.data.name,
-          sprites: res.data.sprites.front_shiny,
-          types: res.data.types.map(arr => arr.type.name)
-        })
-      })
-  }, [pokemons])
-
   return (
-    <ul className="grid grid-cols-9 gap-4">
+    <ul className="grid grid-cols-6 space-x-1 bg-red-100">
       {
         pokemons?.map((pokemon:any) => <li key={pokemon.id}>
-          <PokeCard {...pokemon}/></li>)
+          <PokeCard className={'bg-slate-100 flex flex-col items-center border border-slate-200 h-full'} {...pokemon}/></li>)
       }
-      {
-        specialPokemon && (
-          <li className="grid grid-cols-subgrid col-span-2">
-            <PokeCard className={'col-start-2'} special={true} {...specialPokemon} />
-          </li>
-        )
-      }
+      <li className="grid grid-cols-subgrid col-span-5">
+      { <SpecialPokemon /> }
+      </li>
     </ul>
   )
 }
