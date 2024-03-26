@@ -17,6 +17,7 @@ export default function PokeCard({
         alt={name}
         height={100}
         width={100}
+        loading={"lazy"}
       />
       <h3 className="mt-4 text-base text-center font-bold text-gray-900 sm:text-lg">
         {special ? `${name}` : `${id}-${name}`}

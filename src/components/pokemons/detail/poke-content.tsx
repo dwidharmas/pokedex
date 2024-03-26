@@ -17,7 +17,7 @@ export default function PokeContent({ pokemon, flavor_text }: Props) {
           alt={pokemon.name}
           width={250}
           height={250}
-          priority
+          loading={"lazy"}
         />
       </div>
       <div className="flex flex-col">
@@ -75,7 +75,7 @@ export default function PokeContent({ pokemon, flavor_text }: Props) {
               </ul>
             </div>
           </div>
-          <p className="bg-red-100 grow content-center text-slate-500 text-italic p-8 h-max grow">
+          <p className="bg-red-100 grow content-center text-slate-500 text-italic p-8 h-max">
             {flavor_text}
           </p>
         </main>
