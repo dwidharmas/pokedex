@@ -53,15 +53,15 @@ export default function SortBy({ filter }: Props) {
 
   return (
     <div className="relative">
-      <div className="inline-flex items-center overflow-hidden rounded-md border bg-white">
+      <div
+        onClick={handleClick}
+        className="cursor-pointer inline-flex items-center overflow-hidden rounded-md border bg-white"
+      >
         <div className="border-e px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700">
           Filter by Type
         </div>
 
-        <button
-          onClick={handleClick}
-          className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700"
-        >
+        <button className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700">
           <span className="sr-only">Menu</span>
           <svg
             className="h-4 w-4"
