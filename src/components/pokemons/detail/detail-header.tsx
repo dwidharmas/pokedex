@@ -39,7 +39,7 @@ export default function DetailHeader({ title, language, onClick }: Props) {
           <button
             type="button"
             key={lg.id}
-            className={`p-2 border-4 border-slate-400 ${
+            className={`p-1 text-sm sm:p-2 sm:text-base border-4 border-slate-400 ${
               active === lg.id ? "bg-red-800 border-red-800 text-white" : ""
             }`}
             onClick={() => handleClick(lg.id)}

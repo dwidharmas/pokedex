@@ -23,14 +23,14 @@ export default function PokeDetail({ pokemon, species }: Props) {
 
   return (
     <>
-      <header className="flex items-center justify-between py-2">
+      <header className="flex flex-col md:flex-row items-center justify-between py-2">
         <DetailHeader
           title={pokemon.name}
           language={language}
           onClick={(val) => setLanguage(val)}
         />
       </header>
-      <main className="grid grid-cols-2 space-x-4">
+      <main className="grid grid-cols-1 md:grid-cols-2 space-x-4">
         <PokeContent pokemon={pokemon} flavor_text={flavorText} />
       </main>
     </>
