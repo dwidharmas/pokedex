@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useState } from "react"
 
 type Props = {
   readonly filter: (e: string[]) => void
@@ -51,10 +51,6 @@ export default function SortBy({ filter }: Props) {
       return temp
     })
   }
-
-  useEffect(() => {
-    console.log('temp ', types)
-  }, [types])
 
   return (
     <div className="relative">

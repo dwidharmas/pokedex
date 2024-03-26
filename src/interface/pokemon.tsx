@@ -42,7 +42,12 @@ export interface PokemonTypes {
 }
 
 export type ParamsPokemonMain = {
-  search: string
-  filter: string[]
-  sort: string
+  readonly search: string
+  readonly filter: string[]
+  readonly sort: string
+}
+
+export type PropsPokemonMain = {
+  readonly pokemons: Pokemon[]
+  readonly specialPokemon: Pokemon
 }

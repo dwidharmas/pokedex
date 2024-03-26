@@ -2,13 +2,18 @@
 'use client'
 import { useState } from "react";
 import dynamic from 'next/dynamic'
-import { ParamsPokemonMain } from "@/interface/pokemon";
+import { ParamsPokemonMain, PropsPokemonMain } from "@/interface/pokemon";
 
 
-const PokeMainHeader = dynamic(() => import("./poke-main-header"))
-const PokeMainContent = dynamic(() => import("./poke-main-content"))
+const PokeMainHeader = dynamic(() => import("./poke-main-header"), {
+  loading: () => (<div>Loading ...</div>)
+})
+const PokeMainContent = dynamic(() => import("./poke-main-content"), {
+  loading: () => (<div>Loading ...</div>)
+})
 
-export default function PokeMain() {
+
+export default function PokeMain(props: PropsPokemonMain) {
   const [headerData, setHeaderData] = useState<ParamsPokemonMain>({ search: '', filter: [], sort: ''})
 
   const handlePokeHeader = (val: ParamsPokemonMain) => {
@@ -22,7 +27,7 @@ export default function PokeMain() {
         <PokeMainHeader pokeHeader={(val) => handlePokeHeader(val)} />
       </header>
       <main>
-        <PokeMainContent pokeHeader={headerData} />
+        <PokeMainContent pokeHeader={headerData} {...props} />
       </main>
     </>
   )

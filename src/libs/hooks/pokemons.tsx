@@ -1,5 +1,9 @@
+'use server'
 import myApi from "../utils/myApi"
-import { PokemonTypes } from "@/interface/pokemon";
+import { ParamsPokemonMain, PokemonTypes } from "@/interface/pokemon";
+import { sortBy } from "../utils/sort";
+import searchText from "../utils/search";
+import filterType from "../utils/filter";
 
 export async function getPokemons() {
   const data = await myApi.get('pokedex/updated-alola');
@@ -36,6 +40,18 @@ export async function getPokemonsWithDetail() {
   
     })
   )
+
+  return modifiedPokemon
+}
+
+export async function getSpecialPokemonWithDetail() {
+  const specialPokemon = await getPokemon('necrozma-ultra')
+  const modifiedPokemon = {
+    id: specialPokemon.data.id,
+    name: specialPokemon.data.name,
+    sprites: specialPokemon.data.sprites.front_shiny,
+    types: specialPokemon.data.types.map((arr:PokemonTypes) => arr.type.name)
+  }
 
   return modifiedPokemon
 }

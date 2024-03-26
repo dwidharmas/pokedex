@@ -1,47 +1,31 @@
-'use client'
 import PokeGrid from "@/components/pokemons/poke-grids";
 import { ParamsPokemonMain, Pokemon } from "@/interface/pokemon";
-import { getPokemonsWithDetail } from "@/libs/hooks/pokemons";
 import filterType from "@/libs/utils/filter";
 import searchText from "@/libs/utils/search";
 import { sortBy } from "@/libs/utils/sort";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 
 
 type Props = {
   readonly pokeHeader: ParamsPokemonMain
 }
 
+export default function PokeMainContent({pokeHeader, specialPokemon, pokemons}: any) {
 
-export default function PokeMainContent({pokeHeader}: Props) {
-  const [pokemons, setPokemons] = useState<Pokemon[]>([])
-  const [loading, setLoading] = useState(false)
-
-  const fetchAllPokemon = async () => {
-    setLoading(true)
-    const allPokemon = await getPokemonsWithDetail()
-    setPokemons(allPokemon)
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    fetchAllPokemon()
-  }, [])
-
-  const choosenPokemon = useMemo(() => {
+  const listPokemons = useMemo(() => {
     const sorted = pokeHeader.sort ? sortBy(pokemons, pokeHeader.sort) : pokemons
     const searched = pokeHeader.search ? searchText(sorted, pokeHeader.search) : sorted
     const filtered = pokeHeader.filter.length > 0 ? filterType(searched, pokeHeader.filter) : searched
-    return filtered
-  }, [pokemons, pokeHeader])
-  
-  if (loading) {
-    return (
-      <div className="w-full flex justify-center my-8 py-8">
-        <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-red-600" />
-      </div>
-    )
-  }
 
-  return <PokeGrid pokemons={choosenPokemon} />
+    return filtered
+  }, [pokeHeader, pokemons])
+
+  const specialItem = useMemo(() => {
+    const searched =  (pokeHeader.search && specialPokemon) ? (JSON.stringify(specialPokemon.id).includes(pokeHeader.search) || specialPokemon.name.includes(pokeHeader.search)) : true
+    const filtered =  (pokeHeader.filter.length > 0 && specialPokemon) ? (pokeHeader.filter.some((el:string) => specialPokemon.types.includes(el))) : true
+
+    return (filtered && searched) ? specialPokemon : undefined
+}, [pokeHeader, specialPokemon])
+  
+  return (<PokeGrid pokemons={listPokemons} specialPokemon={specialItem} />)
 }
