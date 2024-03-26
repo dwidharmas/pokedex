@@ -1,4 +1,4 @@
-
+ 
 export interface PokemonSprites {
   front_shiny: string
 }
@@ -6,7 +6,7 @@ export interface Pokemon {
   id: number,
   name: string,
   sprites: string,
-  types: PokemonTypes[],
+  types: string[],
 }
 
 export interface PokemonDetail {
@@ -39,4 +39,10 @@ export interface PokemonTypes {
     name: string,
     url: string,
   }
+}
+
+export type ParamsPokemonMain = {
+  search: string
+  filter: string[]
+  sort: string
 }
