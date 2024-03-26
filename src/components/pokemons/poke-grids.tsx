@@ -16,7 +16,7 @@ type Props = {
 
 export default function PokeGrid({ pokemons, specialPokemon }: Props) {
   return (
-    <ul className="grid grid-cols-6 space-x-1 space-y-1 bg-red-100 justify-between items-center">
+    <ul className="grid grid-cols-1 sm:grid-cols-6 space-x-1 space-y-1 bg-red-100 justify-between items-center">
       {pokemons?.map((pokemon: any) => (
         <li key={pokemon.id}>
           <PokeCard
@@ -27,7 +27,7 @@ export default function PokeGrid({ pokemons, specialPokemon }: Props) {
           />
         </li>
       ))}
-      <li className="col-start-6">
+      <li className="col-start-1 sm:col-start-6">
         {specialPokemon && (
           <PokeCard
             className={
