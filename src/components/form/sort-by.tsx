@@ -1,38 +1,38 @@
-'use client'
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
 type Props = {
-  readonly sortBy: (e: string) => void
-}
-
+  readonly sortBy: (e: string) => void;
+};
 
 export default function SortBy({ sortBy }: Props) {
-  const [open, setOpen] = useState(false)
-  const [sortText, setSortText] = useState('Sort')
-  
+  const [open, setOpen] = useState(false);
+  const [sortText, setSortText] = useState("Sort");
+
   const handleClick = () => {
     setOpen((prev) => {
-      return !prev
-    })
-  }
+      return !prev;
+    });
+  };
 
   const clickSort = (val: string) => {
-    sortBy(val)
-    setSortText(val === 'id' ? 'Sort by ID' : 'Sort by Name')
-    handleClick()
-  }
+    sortBy(val);
+    setSortText(val === "id" ? "Sort by ID" : "Sort by Name");
+    handleClick();
+  };
 
   return (
     <div className="relative">
       <div className="inline-flex items-center overflow-hidden rounded-md border bg-white">
-        <div
-          className="border-e px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700"
-        >
+        <div className="border-e px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700">
           {sortText}
         </div>
 
-        <button onClick={handleClick} className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700">
+        <button
+          onClick={handleClick}
+          className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700"
+        >
           <span className="sr-only">Menu</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,32 +49,30 @@ export default function SortBy({ sortBy }: Props) {
         </button>
       </div>
 
-      {
-        open && (
-          <div
-            className="absolute end-0 z-10 mt-2 w-56 rounded-md border border-gray-100 bg-white shadow-lg"
-            role="menu"
-          >
-            <div className="p-2">
-              <button
-                onClick={() => clickSort('id')}
-                className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                role="menuitem"
-              >
-                Sort by ID
-              </button>
+      {open && (
+        <div
+          className="absolute end-0 z-10 mt-2 w-56 rounded-md border border-gray-100 bg-white shadow-lg"
+          role="menu"
+        >
+          <div className="p-2">
+            <button
+              onClick={() => clickSort("id")}
+              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              role="menuitem"
+            >
+              Sort by ID
+            </button>
 
-              <button
-                onClick={() => clickSort('name')}
-                className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                role="menuitem"
-              >
-                Sort by Name
-              </button>
-            </div>
+            <button
+              onClick={() => clickSort("name")}
+              className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              role="menuitem"
+            >
+              Sort by Name
+            </button>
           </div>
-        )
-      }
+        </div>
+      )}
     </div>
-  )
+  );
 }

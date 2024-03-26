@@ -1,17 +1,19 @@
-import { ChangeEvent } from "react"
+import { ChangeEvent } from "react";
 
 type Props = {
-  readonly search: (e: string) => void
-}
+  readonly search: (e: string) => void;
+};
 
 export default function SearchBar({ search }: Props) {
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    search(e.target.value)
-  }
+    e.preventDefault();
+    search(e.target.value);
+  };
   return (
     <div className="relative flex flex-grow border-2 border-red-200 rounded-lg">
-      <label htmlFor="Search" className="sr-only"> Search </label>
+      <label htmlFor="Search" className="sr-only">
+        Search
+      </label>
 
       <input
         type="text"
@@ -42,5 +44,5 @@ export default function SearchBar({ search }: Props) {
         </button>
       </span>
     </div>
-  )
+  );
 }

@@ -1,53 +1,52 @@
- 
 export interface PokemonSprites {
-  front_shiny: string
+  front_shiny: string;
 }
 export interface Pokemon {
-  id: number,
-  name: string,
-  sprites: string,
-  types: string[],
+  id: number;
+  name: string;
+  sprites: string;
+  types: string[];
 }
 
 export interface PokemonDetail {
-  id: number,
-  name: string,
-  sprites: PokemonSprites,
-  types: PokemonTypes[],
-  height: number,
-  weight: number,
-  abilities: any
+  id: number;
+  name: string;
+  sprites: PokemonSprites;
+  types: PokemonTypes[];
+  height: number;
+  weight: number;
+  abilities: any;
 }
 
 export interface PokemonFlavorText {
-  flavor_text: string
+  flavor_text: string;
   language: {
-    name: string
-  },
+    name: string;
+  };
   version: {
-    name: string
-  }
+    name: string;
+  };
 }
 
 export interface PokemonSpecies {
-  flavor_text_entries: PokemonFlavorText[]
+  flavor_text_entries: PokemonFlavorText[];
 }
 
 export interface PokemonTypes {
-  slot: number,
-  type: { 
-    name: string,
-    url: string,
-  }
+  slot: number;
+  type: {
+    name: string;
+    url: string;
+  };
 }
 
 export type ParamsPokemonMain = {
-  readonly search: string
-  readonly filter: string[]
-  readonly sort: string
-}
+  readonly search: string;
+  readonly filter: string[];
+  readonly sort: string;
+};
 
 export type PropsPokemonMain = {
-  readonly pokemons: Pokemon[]
-  readonly specialPokemon: Pokemon
-}
+  readonly pokemons: Pokemon[];
+  readonly specialPokemon: Pokemon;
+};
