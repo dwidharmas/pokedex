@@ -9,7 +9,7 @@ type Props = {
 
 export default function SortBy({ sortBy }: Props) {
   const [open, setOpen] = useState(false)
-  const [sortText, setSortText] = useState('Sort by ID')
+  const [sortText, setSortText] = useState('Sort')
   
   const handleClick = () => {
     setOpen((prev) => {

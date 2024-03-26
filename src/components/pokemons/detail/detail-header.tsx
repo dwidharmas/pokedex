@@ -28,7 +28,7 @@ export default function DetailHeader({title, language, onClick}: Props) {
 
   return (
     <>
-      <div className="flex flex-row space-x-2">
+      <div className="flex flex-row space-x-2 font-bold">
         <Link className="text-blue-500" href={'/'}>Home</Link> 
         <p className="capitalize">{`> ${title}`}</p>
       </div>
